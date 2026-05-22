@@ -6,9 +6,9 @@ En el presente examen se evaluarán los conocimientos de los estudiantes sobre e
 Para el examen se propone crear un catálogo de pelíclas que se mostrarán en una vista Maestro - Detalle.
 
 ## Datos del estudiante
-- [Nombres y apellidos]
+- Luciano Silva
 
-## Objetivos 
+## Objetivos
 
 ### 1. Reconocimiento y Aplicación de Conceptos Básicos de POO
 El estudiante debe demostrar su capacidad para reconocer y aplicar conceptos fundamentales del Paradigma Orientado a Objetos (POO) tales como clases, objetos, atributos y métodos.
