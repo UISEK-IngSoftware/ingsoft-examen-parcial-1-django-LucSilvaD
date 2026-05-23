@@ -1,21 +1,24 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'movies/css/style.css' %}" rel="stylesheet">
-    <title>Autor: {{ director.name }}</title>
-</head>
-<body>
-    <p><strong>Director:</strong> {{ director.name }}</p>
-    <p><strong>Birth Date:</strong> {{ director.birth_date }}</p>
+{% extends 'base.html' %}
 
-    <h3>Películas:</h3>
+{% block title %}Director: {{ director.name }}{% endblock %}
+
+{% block content %}
+    <h2>Detalles del Director</h2>
+
+    <p><strong>Nombre:</strong> {{ director.name }}</p>
+    <p><strong>Fecha de Nacimiento:</strong> {{ director.birth_date|date:"d M Y" }}</p>
+
+    <h3>Películas Dirigidas:</h3>
     <ul>
         {% for movie in movies %}
-            <li>{{ movie.title }} ({{ movie.release_year }})</li>
+            <li>
+                <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} ({{ movie.release_year }})</a>
+            </li>
+        {% empty %}
+            <li>No hay películas registradas para este director.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+    <br>
+    <a href="{% url 'index' %}" class="btn-back">← Volver al inicio</a>
+{% endblock %}

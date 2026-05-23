@@ -1,22 +1,21 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title class="movie-title">{{ movie.title }}</title>
-    <link href="{% static 'movies/css/style.css' %}" rel="stylesheet">
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }} - Detalles{% endblock %}
+
+{% block content %}
+    <h2>{{ movie.title }}</h2>
+
     <p><strong>Director:</strong> {{ movie.director|default:"Desconocido" }}</p>
-    <p><strong>Genre:</strong> {{ movie.genre }}</p>
-    <p><strong>Release Year:</strong> {{ movie.release_year }}</p>
-    <p><strong>Synopsis:</strong> {{ movie.synopsis }}</p>
+    <p><strong>Género:</strong> {{ movie.genre }}</p>
+    <p><strong>Año de Publicación:</strong> {{ movie.release_year }}</p>
+    <p><strong>Sinopsis:</strong> {{ movie.synopsis }}</p>
 
     {% if movie.director %}
-        <p class="director-button">
-            <a href="{% url 'director_detail' movie.director.id %}">View Director Details</a>
+        <p class="action-buttons">
+            <a href="{% url 'director_detail' movie.director.id %}" class="btn">Ver Detalles del Director</a>
         </p>
     {% endif %}
-</body>
-</html>
+
+    <br>
+    <a href="{% url 'index' %}" class="btn-back">← Volver al inicio</a>
+{% endblock %}
