@@ -1,4 +1,22 @@
-    <p><strong>Director:</strong> {{ movie.director }}</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="movie-title">{{ movie.title }}</title>
+    <link href="{% static 'movies/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <p><strong>Director:</strong> {{ movie.director|default:"Desconocido" }}</p>
     <p><strong>Genre:</strong> {{ movie.genre }}</p>
     <p><strong>Release Year:</strong> {{ movie.release_year }}</p>
-    <p><strong>Synopsis:</strong> {{ movie.synopsis }}</p>  
+    <p><strong>Synopsis:</strong> {{ movie.synopsis }}</p>
+
+    {% if movie.director %}
+        <p class="director-button">
+            <a href="{% url 'director_detail' movie.director.id %}">View Director Details</a>
+        </p>
+    {% endif %}
+</body>
+</html>

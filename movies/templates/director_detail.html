@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'movies/css/style.css' %}" rel="stylesheet">
-    <title>Movies</title>
+    <title>Autor: {{ director.name }}</title>
 </head>
 <body>
-    <h1>Movies</h1>
+    <p><strong>Director:</strong> {{ director.name }}</p>
+    <p><strong>Birth Date:</strong> {{ director.birth_date }}</p>
+
+    <h3>Películas:</h3>
     <ul>
         {% for movie in movies %}
-            <li><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></li>
+            <li>{{ movie.title }} ({{ movie.release_year }})</li>
         {% endfor %}
     </ul>
 </body>
