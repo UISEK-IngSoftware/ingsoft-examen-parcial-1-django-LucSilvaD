@@ -20,6 +20,7 @@ class Movie(models.Model):
     release_year = models.IntegerField()
     synopsis = models.TextField()
     poster = models.ImageField(upload_to='posters/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

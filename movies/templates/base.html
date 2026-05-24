@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}vlum{% endblock %}</title>
     <link href="{% static 'movies/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'movies/css/carousel.css' %}" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
@@ -19,5 +20,6 @@
         {% block content %}
         {% endblock %}
     </main>
+    <script src="{% static 'movies/js/main.js' %}"></script>
 </body>
 </html>

@@ -3,8 +3,30 @@
 {% block title %}Inicio - vlum{% endblock %}
 
 {% block content %}
-    <h2 class="section-title">Películas Destacadas</h2>
+    {% if recent_movies %}
+    <div class="top-strip-container">
+        <h2 class="strip-title">✨ Recién llegadas</h2>
+        <div class="top-strip" id="topStrip">
+            <div class="strip-track" id="stripTrack">
+                {% for movie in recent_movies %}
+                    <a href="{% url 'movie_detail' movie.id %}" class="strip-item">
+                        {% if movie.poster %}
+                            <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+                        {% else %}
+                            <div class="strip-placeholder">{{ movie.title }}</div>
+                        {% endif %}
+                        <div class="strip-caption">
+                            <span class="strip-movie-title">{{ movie.title }}</span>
+                            <span class="strip-year">{{ movie.release_year }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
+    <h2 class="section-title">Películas Destacadas</h2>
     <div class="movie-grid">
         {% for movie in movies %}
             <div class="movie-card">
