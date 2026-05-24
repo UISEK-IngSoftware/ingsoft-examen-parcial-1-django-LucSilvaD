@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Catálogo de Películas{% endblock %}</title>
-    <link href="{% static 'movies/css/style.css' %}" rel="stylesheet">
+    <title>{% block title %}vlum{% endblock %}</title>
+    <link href="{% static 'movies/css/custom.css' %}" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1><a href="{% url 'index' %}" class="home-link">Catálogo de Películas</a></h1>
+    <header class="navbar">
+        <a href="{% url 'index' %}" class="logo-link">
+            <img src="{% static 'movies/img/logo.png' %}" alt="vlum logo" class="logo-img">
+            <span class="logo-text">vlum</span>
+        </a>
     </header>
 
     <main class="container">

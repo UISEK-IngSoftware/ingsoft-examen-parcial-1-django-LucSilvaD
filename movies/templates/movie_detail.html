@@ -1,21 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ movie.title }} - Detalles{% endblock %}
+{% block title %}{{ movie.title }} - vlum{% endblock %}
 
 {% block content %}
-    <h2>{{ movie.title }}</h2>
+    <div class="detail-view">
+        <div class="detail-poster-container">
+            {% if movie.poster %}
+                <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" class="detail-poster">
+            {% else %}
+                <div class="detail-poster placeholder">Sin Imagen</div>
+            {% endif %}
+        </div>
 
-    <p><strong>Director:</strong> {{ movie.director|default:"Desconocido" }}</p>
-    <p><strong>Género:</strong> {{ movie.genre }}</p>
-    <p><strong>Año de Publicación:</strong> {{ movie.release_year }}</p>
-    <p><strong>Sinopsis:</strong> {{ movie.synopsis }}</p>
+        <div class="detail-info">
+            <h2>{{ movie.title }} <span class="year">({{ movie.release_year }})</span></h2>
 
-    {% if movie.director %}
-        <p class="action-buttons">
-            <a href="{% url 'director_detail' movie.director.id %}" class="btn">Ver Detalles del Director</a>
-        </p>
-    {% endif %}
+            <div class="meta-tags">
+                <span class="tag">{{ movie.genre }}</span>
+                {% if movie.director %}
+                    <a href="{% url 'director_detail' movie.director.id %}" class="tag director-tag">{{ movie.director.name }}</a>
+                {% endif %}
+            </div>
 
-    <br>
-    <a href="{% url 'index' %}" class="btn-back">← Volver al inicio</a>
+            <div class="synopsis">
+                <h3>Sinopsis</h3>
+                <p>{{ movie.synopsis }}</p>
+            </div>
+
+            <a href="{% url 'index' %}" class="btn-back">← Volver al inicio</a>
+        </div>
+    </div>
 {% endblock %}

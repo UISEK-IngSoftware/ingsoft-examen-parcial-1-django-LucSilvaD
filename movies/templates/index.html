@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
 
-{% block title %}Inicio - Películas{% endblock %}
+{% block title %}Inicio - vlum{% endblock %}
 
 {% block content %}
-    <h2>Listado de Películas</h2>
-    <ul>
+    <h2 class="section-title">Películas Destacadas</h2>
+
+    <div class="movie-grid">
         {% for movie in movies %}
-            <li>
-                <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} - {{ movie.release_year }}</a>
-            </li>
+            <div class="movie-card">
+                <a href="{% url 'movie_detail' movie.id %}">
+                    {% if movie.poster %}
+                        <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" class="movie-poster">
+                    {% else %}
+                        <div class="movie-poster placeholder">
+                            <span>{{ movie.title }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="movie-info">
+                        <h3>{{ movie.title }}</h3>
+                        <p>{{ movie.release_year }}</p>
+                    </div>
+                </a>
+            </div>
         {% empty %}
-            <li>No hay películas registradas.</li>
+            <p class="no-data">No hay películas registradas.</p>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

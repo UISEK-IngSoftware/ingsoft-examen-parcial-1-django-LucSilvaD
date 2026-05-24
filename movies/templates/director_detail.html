@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
 
-{% block title %}Director: {{ director.name }}{% endblock %}
+{% block title %}{{ director.name }} - vlum{% endblock %}
 
 {% block content %}
-    <h2>Detalles del Director</h2>
+    <div class="director-header">
+        <h2>{{ director.name }}</h2>
+        <p class="birth-date">Nacimiento: {{ director.birth_date|date:"d M Y" }}</p>
+    </div>
 
-    <p><strong>Nombre:</strong> {{ director.name }}</p>
-    <p><strong>Fecha de Nacimiento:</strong> {{ director.birth_date|date:"d M Y" }}</p>
+    <h3 class="section-title">Filmografía</h3>
 
-    <h3>Películas Dirigidas:</h3>
-    <ul>
+    <div class="movie-grid">
         {% for movie in movies %}
-            <li>
-                <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} ({{ movie.release_year }})</a>
-            </li>
+            <div class="movie-card">
+                <a href="{% url 'movie_detail' movie.id %}">
+                    {% if movie.poster %}
+                        <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" class="movie-poster">
+                    {% else %}
+                        <div class="movie-poster placeholder">
+                            <span>{{ movie.title }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="movie-info">
+                        <h3>{{ movie.title }}</h3>
+                        <p>{{ movie.release_year }}</p>
+                    </div>
+                </a>
+            </div>
         {% empty %}
-            <li>No hay películas registradas para este director.</li>
+            <p class="no-data">No hay películas registradas para este director.</p>
         {% endfor %}
-    </ul>
+    </div>
 
-    <br>
     <a href="{% url 'index' %}" class="btn-back">← Volver al inicio</a>
 {% endblock %}
