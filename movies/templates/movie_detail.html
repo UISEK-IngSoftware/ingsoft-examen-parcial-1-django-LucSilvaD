@@ -1,5 +1,8 @@
-{% extends 'base.html' %} {% block title %}{{ movie.title }} - vlum{% endblock
-%} {% block content %}
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }} - vlum{% endblock %}
+
+{% block content %}
 <div class="detail-view">
   <div class="detail-poster-container">
     {% if movie.poster %}
@@ -21,7 +24,9 @@
     <div class="meta-tags">
       {% for genre in movie.genres.all %}
       <span class="tag">{{ genre.name }}</span>
-      {% endfor %} {% if movie.director %}
+      {% endfor %}
+
+      {% if movie.director %}
       <a
         href="{% url 'director_detail' movie.director.id %}"
         class="tag director-tag"
